@@ -16,15 +16,15 @@ class Checkboxes extends React.PureComponent<IDispatchProps, {}> {
   constructor(props) {
     super(props);
     this.onClusterOutlierChange = this.onClusterOutlierChange.bind(this);
-    this.onHideNamesChange = this.onHideNamesChange.bind(this);
+    // this.onHideNamesChange = this.onHideNamesChange.bind(this);
   }
   private onClusterOutlierChange(e) {
     this.props.clusterOutliersActions.toggleClusterOutliers(e.target.checked);
   }
 
-  private onHideNamesChange(e) {
-    this.props.hideNamesActions.toggleHideNames(e.target.checked);
-  }
+  // private onHideNamesChange(e) {
+  //   this.props.hideNamesActions.toggleHideNames(e.target.checked);
+  // }
 
   public render() {
     return (

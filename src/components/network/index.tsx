@@ -41,9 +41,15 @@ class Network extends React.Component<IProps & IDispatchProps, IState> {
       length: 200
     },
     physics: {
-      barnesHut: {
-        avoidOverlap: 1
-      }
+      stabilization: {
+        enabled: true,
+        iterations: 180, // maximum number of iteration to stabilize
+        updateInterval: 100,
+        onlyDynamicEdges: false,
+        fit: true
+      },
+      solver: "barnesHut",
+      adaptiveTimestep: true
     }
   };
 

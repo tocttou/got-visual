@@ -64,7 +64,7 @@ class Insights extends React.PureComponent<IProps & IDispatchProps, IState> {
       this.state.leftRelationship
     }]->(u2:Character)-[r2:${
       this.state.rightRelationship
-    }]-(u1) RETURN p, type(r1), type(r2)`;
+    }]->(u1) RETURN p, type(r1), type(r2)`;
   }
 
   private handleLeftRelationshipChange(value) {

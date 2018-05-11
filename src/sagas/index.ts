@@ -7,6 +7,7 @@ import { watchHideNames } from "./hide-names-saga";
 import { watchNumActiveCharacters } from "./num-active-characters-saga";
 import { watchNumActiveRelationships } from "./num-active-relationships-saga";
 import { watchNetwork } from "./network-saga";
+import { watchCommit } from "./commit-saga";
 import { SagaIterator } from "redux-saga";
 import { all, call } from "redux-saga/effects";
 
@@ -20,6 +21,7 @@ export default function* rootSaga(): SagaIterator {
     call(watchHideNames),
     call(watchNumActiveCharacters),
     call(watchNumActiveRelationships),
-    call(watchNetwork)
+    call(watchNetwork),
+    call(watchCommit)
   ]);
 }

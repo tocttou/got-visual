@@ -1,6 +1,5 @@
 import * as React from "react";
 import { dropDownSelectorStyle, searchStyle } from "./styles";
-import Select from "antd/lib/select";
 import TreeSelect from "antd/lib/tree-select";
 import {
   IImmutableInitialState,
@@ -8,12 +7,14 @@ import {
 } from "../../reducers/initial-state";
 import { bindActionCreators, Dispatch } from "redux";
 import * as filterOutActions from "../../actions/filter-out-actions";
+import * as commitActions from "../../actions/commit-actions";
 import { connect } from "react-redux";
 import * as groupActions from "../../actions/group-actions";
 const TreeNode = TreeSelect.TreeNode;
 
 interface IDispatchProps {
   filterOutActions: typeof filterOutActions;
+  commitActions: typeof commitActions;
   groupActions: typeof groupActions;
 }
 
@@ -28,9 +29,8 @@ class FilterOutSelector extends React.PureComponent<IProps & IDispatchProps> {
   }
   private onFilterSelectorChange(value) {
     this.props.filterOutActions.changeFilterOut(value);
-    setTimeout(() => {
-      this.props.groupActions.changeGrouping(this.props.group);
-    }, 500);
+    this.props.groupActions.changeGrouping(this.props.group);
+    this.props.commitActions.commitChanges();
   }
 
   public render() {
@@ -77,6 +77,7 @@ function mapStateToProps(state: IImmutableInitialState) {
 function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
     filterOutActions: bindActionCreators(filterOutActions, dispatch),
+    commitActions: bindActionCreators(commitActions, dispatch),
     groupActions: bindActionCreators(groupActions, dispatch)
   };
 }

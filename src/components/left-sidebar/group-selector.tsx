@@ -4,11 +4,13 @@ import Select from "antd/lib/select";
 import { bindActionCreators, Dispatch } from "redux";
 import { IImmutableInitialState } from "../../reducers/initial-state";
 import * as groupActions from "../../actions/group-actions";
+import * as commitActions from "../../actions/commit-actions";
 import { connect } from "react-redux";
 const Option = Select.Option;
 
 interface IDispatchProps {
   groupActions: typeof groupActions;
+  commitActions: typeof commitActions;
 }
 
 class GroupSelector extends React.PureComponent<IDispatchProps, {}> {
@@ -18,6 +20,7 @@ class GroupSelector extends React.PureComponent<IDispatchProps, {}> {
   }
   private onGroupSelectorChange(value) {
     this.props.groupActions.changeGrouping(value);
+    this.props.commitActions.commitChanges();
   }
 
   public render() {
@@ -43,7 +46,8 @@ function mapStateToProps(state: IImmutableInitialState) {
 
 function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
-    groupActions: bindActionCreators(groupActions, dispatch)
+    groupActions: bindActionCreators(groupActions, dispatch),
+    commitActions: bindActionCreators(commitActions, dispatch)
   };
 }
 

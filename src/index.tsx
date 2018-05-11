@@ -1,14 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import initialState from "./reducers/initial-state";
-import configureStore from "./store/configure-store";
+import store from "./store";
 import App from "./App";
 // tslint:disable-next-line
 import { AppContainer } from "react-hot-loader";
 import "./antd-css";
 
-const store = configureStore(initialState);
 const rootEl = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>

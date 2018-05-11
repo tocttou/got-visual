@@ -1,17 +1,18 @@
 import * as React from "react";
-import Select from "antd/lib/select";
 import * as relationshipActions from "../../actions/relationship-actions";
+import * as commitActions from "../../actions/commit-actions";
 import * as groupActions from "../../actions/group-actions";
 import { bindActionCreators, Dispatch } from "redux";
 import {
-  IImmutableInitialState,
-  IInitialState
+IImmutableInitialState,
+IInitialState
 } from "../../reducers/initial-state";
 import { connect } from "react-redux";
 import DropDownSelector from "./drop-down-selector";
 
 interface IDispatchProps {
   relationshipActions: typeof relationshipActions;
+  commitActions: typeof commitActions;
   groupActions: typeof groupActions;
 }
 
@@ -31,9 +32,8 @@ class RelationshipSelector extends React.PureComponent<
   }
   private onRelationshipSelectorChange(value) {
     this.props.relationshipActions.changeRelationship(value);
-    setTimeout(() => {
-      this.props.groupActions.changeGrouping(this.props.group);
-    }, 500);
+    this.props.groupActions.changeGrouping(this.props.group);
+    this.props.commitActions.commitChanges();
   }
 
   public render() {
@@ -57,6 +57,7 @@ function mapStateToProps(state: IImmutableInitialState) {
 function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
     relationshipActions: bindActionCreators(relationshipActions, dispatch),
+    commitActions: bindActionCreators(commitActions, dispatch),
     groupActions: bindActionCreators(groupActions, dispatch)
   };
 }
