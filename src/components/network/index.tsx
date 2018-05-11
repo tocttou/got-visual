@@ -50,6 +50,9 @@ class Network extends React.Component<IProps & IDispatchProps, IState> {
       },
       solver: "barnesHut",
       adaptiveTimestep: true
+    },
+    barnesHut: {
+      avoidOverlap: 0.5
     }
   };
 
