@@ -2,23 +2,6 @@
 
 ## Deployment instructions
 
-### Using docker
-
-The whole stack (neo4j + app) can be started with:
-
-```
-docker run -p=8080:8080 -p=3000:3000 -it tocttou/gotviz
-```
-
-Where you should only expose port 8080 (and not 3000) to public. To change the app port (to say, 9000), do:
-
-```
-docker run -p=9000:8080 -p=3000:3000 -it tocttou/gotviz
-```
-
-
-### Manual
-
 **If there are any build errors, please remove the `package-lock.json` file and continue.**
 
 Tested on: Nodev8.9.1+
